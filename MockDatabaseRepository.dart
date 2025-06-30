@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'profile.dart';
 import 'databaseRepository.dart';
 
 class MockDatabaseRepository implements DatabaseRepository {
@@ -14,10 +15,7 @@ class MockDatabaseRepository implements DatabaseRepository {
 
   @override
   Future<UserProfile?> getUserProfileById(String id) async {
-    return _userProfiles.firstWhere(
-      (profile) => profile.id == id,
-      orElse: () => null,
-    );
+    return _userProfiles.firstWhere((profile) => profile.id == id);
   }
 
   @override
@@ -45,7 +43,7 @@ class MockDatabaseRepository implements DatabaseRepository {
 
   @override
   Future<Victim?> getVictimById(String id) async {
-    return _victims.firstWhere((victim) => victim.id == id, orElse: () => null);
+    return _victims.firstWhere((victim) => victim.victim_id == id);
   }
 
   @override
@@ -55,7 +53,7 @@ class MockDatabaseRepository implements DatabaseRepository {
 
   @override
   Future<void> updateVictim(Victim victim) async {
-    final index = _victims.indexWhere((v) => v.id == victim.id);
+    final index = _victims.indexWhere((v) => v.victim_id == victim.victim_id);
     if (index != -1) {
       _victims[index] = victim;
     }
@@ -63,7 +61,7 @@ class MockDatabaseRepository implements DatabaseRepository {
 
   @override
   Future<void> deleteVictim(String id) async {
-    _victims.removeWhere((victim) => victim.id == id);
+    _victims.removeWhere((victim) => victim.victim_id == id);
   }
 
   @override
@@ -73,10 +71,7 @@ class MockDatabaseRepository implements DatabaseRepository {
 
   @override
   Future<ConcentrationCamp?> getConcentrationCampById(String id) async {
-    return _concentrationCamps.firstWhere(
-      (camp) => camp.id == id,
-      orElse: () => null,
-    );
+    return _concentrationCamps.firstWhere((camp) => camp.camp_id == id);
   }
 
   @override
@@ -86,7 +81,9 @@ class MockDatabaseRepository implements DatabaseRepository {
 
   @override
   Future<void> updateConcentrationCamp(ConcentrationCamp camp) async {
-    final index = _concentrationCamps.indexWhere((c) => c.id == camp.id);
+    final index = _concentrationCamps.indexWhere(
+      (c) => c.camp_id == camp.camp_id,
+    );
     if (index != -1) {
       _concentrationCamps[index] = camp;
     }
@@ -94,7 +91,7 @@ class MockDatabaseRepository implements DatabaseRepository {
 
   @override
   Future<void> deleteConcentrationCamp(String id) async {
-    _concentrationCamps.removeWhere((camp) => camp.id == id);
+    _concentrationCamps.removeWhere((camp) => camp.camp_id == id);
   }
 
   @override
@@ -104,10 +101,7 @@ class MockDatabaseRepository implements DatabaseRepository {
 
   @override
   Future<Commander?> getCommanderById(String id) async {
-    return _commanders.firstWhere(
-      (commander) => commander.id == id,
-      orElse: () => null,
-    );
+    return _commanders.firstWhere((commander) => commander.commander_id == id);
   }
 
   @override
@@ -117,7 +111,9 @@ class MockDatabaseRepository implements DatabaseRepository {
 
   @override
   Future<void> updateCommander(Commander commander) async {
-    final index = _commanders.indexWhere((c) => c.id == commander.id);
+    final index = _commanders.indexWhere(
+      (c) => c.commander_id == commander.commander_id,
+    );
     if (index != -1) {
       _commanders[index] = commander;
     }
@@ -125,6 +121,6 @@ class MockDatabaseRepository implements DatabaseRepository {
 
   @override
   Future<void> deleteCommander(String id) async {
-    _commanders.removeWhere((commander) => commander.id == id);
+    _commanders.removeWhere((commander) => commander.commander_id == id);
   }
 }

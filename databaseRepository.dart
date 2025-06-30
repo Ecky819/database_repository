@@ -1,4 +1,4 @@
-import 'package:userProfile.dart';
+import 'profile.dart';
 
 abstract class DatabaseRepository {
   // UserProfiles CRUD
